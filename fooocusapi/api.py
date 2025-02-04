@@ -9,6 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
 import uvicorn
+import nest_asyncio
+from pyngrok import ngrok
 
 from fooocusapi.utils import file_utils
 from fooocusapi.routes.generate_v1 import secure_router as generate_v1
@@ -72,6 +74,10 @@ app.include_router(query)
 app.include_router(generate_v1)
 app.include_router(generate_v2)
 
+
+ngrok_tunnel = ngrok.connect(8000)
+print("Public URL:", ngrok_tunnel.public_url)
+nest_asyncio.apply()
 
 def start_app(args):
     """Start the FastAPI application"""
