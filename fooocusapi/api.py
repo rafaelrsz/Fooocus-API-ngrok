@@ -75,7 +75,7 @@ app.include_router(generate_v1)
 app.include_router(generate_v2)
 
 
-ngrok_tunnel = ngrok.connect(8000)
+ngrok_tunnel = ngrok.connect(8888)
 print("Public URL:", ngrok_tunnel.public_url)
 nest_asyncio.apply()
 
